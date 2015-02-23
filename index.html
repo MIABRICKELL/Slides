@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Incidence Rate calculator</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Incidence Rate calculator">
+  <meta name="author" content="">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Incidence Rate calculator</h1>
+    <h2>Developing Data Products</h2>
+    <p><br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><br><br></p>
+
+<ul>
+<li>The incidence rate is the number of new cases per population at risk in a given time period. When the denominator is the sum of the person-time of the at risk population, it is also know as the incidence density rate or person-time incidence rate. Essentially, it measures how fast a disease is spreading.
+<br><br></li>
+<li>This application will allow you to select a disease and help to calculate an incidence rate based on the number of people at risk in the beginning of the time period, the number of people at risk in the end of the time period, along with the time period.
+<br><br></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Calculation</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>The calculation figures out the number of new cases by taking the difference of the people at risk at the beginning of the time period and subtracting the number of people at risk at the end of the time period. This calculation is at follows: (Number of people at risk at beginning of the time interval - Number of people at risk at end of time interval)</p></li>
+<li><p>It then calculates the sum of the person-time of the at risk population, which uses the following formula:
+((Number of people at risk at beginning of the time interval + Number of people at risk at end of time interval)/2) * (Number of time units in the time interval)</p></li>
+<li><p>Finally, it divides the the number of new cases by the person-time at risk. Here is an example:</p></li>
+</ol>
+
+<pre><code class="r">##Use 1000 people at beginnning, 960 people at the end, 2 months
+rate&lt;-(1000-960)/(((1000+960)/2)*2)
+paste0(formatC(100 * rate, digits = 4), &quot;%&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;2.041%&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>User Interface</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><br></p>
+
+<ul>
+<li>The user interface is straightforward and easy to use. All you need to do is select the disease, enter in the population at risk at the beginning of the time interval, the population at risk at the end of the time interval, the time interval, and the type of time units (days, months, years). The calculation will only happen after clicking Submit.
+<br><br></li>
+<li>Once these items are entered. The user interface will display your selections along with a nicely formatted description of the incidence rate of the disease selected.
+<br><br></li>
+<li>A pie chart will also display that creates a visualization of how many people developed the disease and how many are still at risk.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Vision and Future Releases</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>In future releases, we will be adding existing data sets of incidence rates for each of the supported diseases.
+This will enable you to compare your current incidence rate with a similar unit of time in the past.</p>
+
+<h3><u>Fun Quiz</u></h3>
+
+<h4>Once you have used the application, how many diseases are currently supported?</h4>
+
+<ol>
+<li>1</li>
+<li>2</li>
+<li>3</li>
+<li><em>4</em></li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-hint">
+  <p>Check the disease dropdown in the app.</p>
+
+</div>
+<div class="quiz-explanation">
+  <p>There are currently only four dieases supported because we plan to add historic datasets and these are the ones currently being collected.</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Calculation'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='User Interface'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Vision and Future Releases'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+
+  
+  <script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

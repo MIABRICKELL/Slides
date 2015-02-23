@@ -1,0 +1,80 @@
+---
+title       : Incidence Rate calculator
+subtitle    : Developing Data Products
+author      : 
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [quiz, bootstrap]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+--- 
+
+## Introduction
+
+<br><br>
+
+
+* The incidence rate is the number of new cases per population at risk in a given time period. When the denominator is the sum of the person-time of the at risk population, it is also know as the incidence density rate or person-time incidence rate. Essentially, it measures how fast a disease is spreading.
+<br><br>
+* This application will allow you to select a disease and help to calculate an incidence rate based on the number of people at risk in the beginning of the time period, the number of people at risk in the end of the time period, along with the time period.
+<br><br>
+
+
+--- 
+
+## Calculation
+
+1. The calculation figures out the number of new cases by taking the difference of the people at risk at the beginning of the time period and subtracting the number of people at risk at the end of the time period. This calculation is at follows: (Number of people at risk at beginning of the time interval - Number of people at risk at end of time interval)
+
+2. It then calculates the sum of the person-time of the at risk population, which uses the following formula:
+((Number of people at risk at beginning of the time interval + Number of people at risk at end of time interval)/2) * (Number of time units in the time interval)
+
+3. Finally, it divides the the number of new cases by the person-time at risk. Here is an example:
+
+
+```{r}
+##Use 1000 people at beginnning, 960 people at the end, 2 months
+rate<-(1000-960)/(((1000+960)/2)*2)
+paste0(formatC(100 * rate, digits = 4), "%")
+
+```
+
+---
+
+## User Interface
+<br>
+* The user interface is straightforward and easy to use. All you need to do is select the disease, enter in the population at risk at the beginning of the time interval, the population at risk at the end of the time interval, the time interval, and the type of time units (days, months, years). The calculation will only happen after clicking Submit.
+<br><br>
+* Once these items are entered. The user interface will display your selections along with a nicely formatted description of the incidence rate of the disease selected.
+<br><br>
+* A pie chart will also display that creates a visualization of how many people developed the disease and how many are still at risk.
+
+--- &radio
+
+## Vision and Future Releases
+In future releases, we will be adding existing data sets of incidence rates for each of the supported diseases.
+This will enable you to compare your current incidence rate with a similar unit of time in the past.
+
+### <u>Fun Quiz</u>
+
+#### Once you have used the application, how many diseases are currently supported?
+
+1. 1
+2. 2
+3. 3
+4. _4_
+
+*** .hint 
+
+Check the disease dropdown in the app.
+
+*** .explanation
+
+There are currently only four dieases supported because we plan to add historic datasets and these are the ones currently being collected.
+
+
+
+
+
